@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Client_Server
@@ -46,6 +45,14 @@ namespace Client_Server
             i++;
             var volueEngine = BitConverter.ToSingle(bytes, i);
             return new Cars { Brand = brand, Year = (ushort)year, VolueEngine = volueEngine };
+        }
+
+        public void SaveCarToXML(Cars cars, string filename)
+        {
+            var serializer = new XmlSerializer(typeof(Cars));
+            using var fs = new StreamWriter(filename);
+            serializer.Serialize(fs, cars);
+            Console.WriteLine("Данные сохранены в файл 'cars.xml'");
         }
 
 

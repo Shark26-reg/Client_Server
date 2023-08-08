@@ -14,7 +14,7 @@ namespace Client_Server
 
         public Server() 
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint ipPoint = new IPEndPoint(IPAddress.Any, 7777);
             socket.Bind(ipPoint);
             socket.Listen(10);
