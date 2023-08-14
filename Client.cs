@@ -26,9 +26,14 @@ namespace Client_Server
             return ParseCar(buf);
         }
 
+
+        
+
+            
+
         private Cars ParseCar(byte[] bytes)
         {
-            int i = 0;
+            int i = 0;  
             if (bytes[i++] != 0x02 || bytes[i++] != 0x03)
             {
                 throw new Exception("Неверные данные");
@@ -45,6 +50,15 @@ namespace Client_Server
             i++;
             var volueEngine = BitConverter.ToSingle(bytes, i);
             return new Cars { Brand = brand, Year = (ushort)year, VolueEngine = volueEngine };
+        }
+
+        public void ShowCar(List<Cars> cars)
+        {
+            foreach (var list in cars)
+            {
+                Console.WriteLine(list?.Show);
+                Console.WriteLine();
+            }
         }
 
         public void SaveCarToXML(Cars cars, string filename)

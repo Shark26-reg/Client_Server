@@ -4,12 +4,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Client_Server
 {
     public class Server
     {
+        private static readonly List<Cars> CarsList = new List<Cars>
+        {
+            new() {Brand = "Toyota", Year = 2001, VolueEngine = 2.5f},
+            new() {Brand = "VV", Year = 2008, VolueEngine = 2.0f},
+            new() {Brand = "Nissan", Year = 2016, VolueEngine = 3.2f}
+        };
+
+        
+
         private Socket socket;
 
         public Server() 
@@ -23,34 +33,31 @@ namespace Client_Server
 
         public Task StartAsync() 
         {
-            var car = CarsDataFrom();
+          
             return Task.Run(() =>
             {
                 var client = socket.Accept();
-                var carsByte = GetCarByte(car);
+                var carsByte = GetCarsByte(CarsList);
                 client.Send(carsByte);
                 client.Close();
             });
         }
 
-        
-        
-        private Cars CarsDataFrom()
+        private byte[] GetCarsByte(List<Cars> carsList)
         {
-            List<Cars> cars = new List<Cars>()
+            var bytes = new List<byte>();
+            foreach (var cars in carsList)
             {
-                new Cars { Brand = "Toyota", Year = 2001, VolueEngine = 2.5f },
-                new Cars { Brand = "VV", Year = 2008, VolueEngine = 2.0f },
-                new Cars { Brand = "Nissan", Year = 2016, VolueEngine = 3.2f},
-            };
-
-
-
+                bytes.AddRange(GetCarByte(cars));
+            }
+            return bytes.ToArray();
         }
 
-    }
 
-        private byte[] GetCarByte(Cars cars) 
+
+
+
+        private static byte[] GetCarByte(Cars cars) 
         {
             List<byte> bytes = new List<byte>();
             bytes.Add(0x02);

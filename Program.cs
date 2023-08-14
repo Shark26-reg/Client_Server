@@ -18,6 +18,22 @@ namespace Client_Server
 
             var cars = client.GetCars();
 
+            Console.WriteLine("####Menu###");
+            Console.WriteLine("1. Вывести все авто ");
+            Console.WriteLine("2. Выход ");
+            Console.Write("\n" + "Введите команду: ");
+            Console.WriteLine();
+            string str = Console.ReadLine();
+            switch(str)
+            {
+                case "1": client.ShowCar(cars);
+                    break;
+                case "2": 
+                    return;
+                    
+       
+            }
+
             client.SaveCarToXML(cars, "cars.xml");
         }
     }
