@@ -19,7 +19,7 @@ namespace Client_Server
             var cars = client.GetCars();
 
             Console.WriteLine("####Menu###");
-            Console.WriteLine("1. Вывести все авто ");
+            Console.WriteLine("1. Вывести все авто  ");
             Console.WriteLine("2. Выход ");
             Console.Write("\n" + "Введите команду: ");
             Console.WriteLine();
