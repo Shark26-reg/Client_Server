@@ -11,6 +11,13 @@ namespace Client_Server
         public string Brand { get; set; }
         public ushort Year { get; set; }
         public float VolueEngine { get; set; }
+        public Cars(string brand, ushort year, float volueEngene)
+        {
+            Brand = brand;
+            Year = year;
+            VolueEngine = volueEngene;
+        }
+
 
         
 

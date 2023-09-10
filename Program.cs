@@ -19,7 +19,6 @@ namespace Client_Server
             var cars = client.GetCars();
 
             client.SaveCarToXML(cars, "cars.xml");
-            Console.WriteLine("Данные сохранены");
         }
     }
 

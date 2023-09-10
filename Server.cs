@@ -37,29 +37,18 @@ namespace Client_Server
         
         private Cars CarsDataFrom()
         {
-            Console.WriteLine("Введите марку автомобиля: ");
-            var brand = Console.ReadLine();
-
-            Console.WriteLine("Введите год выпуска автомобиля: ");
-            ushort year; 
-
-            while (!ushort.TryParse(Console.ReadLine(), out year))
+            List<Cars> cars = new List<Cars>()
             {
-                Console.WriteLine("Введите год выпуска еще раз: ");
-            }
+                new Cars { Brand = "Toyota", Year = 2001, VolueEngine = 2.5f },
+                new Cars { Brand = "VV", Year = 2008, VolueEngine = 2.0f },
+                new Cars { Brand = "Nissan", Year = 2016, VolueEngine = 3.2f},
+            };
 
 
-            Console.WriteLine("Введите объем двигателя автомобиля: ");
-            float volumeEngin;
-
-            while (!float.TryParse(Console.ReadLine(), out volumeEngin))
-            {
-                Console.WriteLine("Веведите объем двигателя еще раз: ");
-            }
-
-            return new Cars { Brand = brand, Year = year, VolueEngine = volumeEngin };
 
         }
+
+    }
 
         private byte[] GetCarByte(Cars cars) 
         {
@@ -77,6 +66,7 @@ namespace Client_Server
 
             return bytes.ToArray();
         }
+        
 
 
     }
